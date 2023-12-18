@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+.red {background-color: red;}
+  </style>
+  <title>Faktury</title>
+
+  <link rel="stylesheet" type="text/css" href=https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"">
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
+</head>
+
+<body>
+<header>
+  <nav class="navbar navbar-dark bg-dark navbar-expand mb-4">
+    <a class="navbar-brand" th:href="@{/}">sklepmiesny.pl</a>
+
+    <div>
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" th:href="@{/}">Start</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/storage}">Magazyn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/orders}">Zamówienia</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/FV}">Faktury</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<table id=”tabelafv” class="table table-striped" style="widht:100%">
+  <thead class="thead-dark">
+  <tr>
+    <th>Data dostawy</th>
+    <th>Numer FV</th>
+    <th>Kontrahent</th>
+    <th>Kwota</th>
+    <th>Termin</th>
+    <th>Zapłacono</th>
+    <th>Edytuj</th>
+  </tr>
+  </thead>
+  <tbody>
+  <th:block th:each="fv : ${listFV}">
+    <tr>
+      <td>[[${fv.dataDostawy}]]</td>
+      <td>[[${fv.numerFV}]]</td>
+      <td>[[${fv.kontrahent}]]</td>
+      <td>[[${fv.kwota}]]</td>
+      <td >[[${fv.termin}]]</td>
+      <td>[[${fv.details}]]</td>
+      <td>
+  <a class="text-dark" th:href="@{'/FV/edit/' + ${fv.id}}">Edytuj</a>
+      </td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <button type="button" class="btn btn-primary m-3 bg-dark" onclick="comeback()">Strona główna</button>
+<button type="button" class="btn btn-primary m-3 bg-dark" onclick="add()">Dodaj fakturę</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"></script>
+
+<script>
+var tds = document.querySelectorAll('td');
+for (var x=0; x<tds.length; x++) {
+var value = tds[x].innerHTML;
+if (value == "[Niezapłacono]") {
+tds[x].className = 'red';
+}
+}
+</script>
+<script type="text/javascript">
+    function comeback() {
+        window.location = "[[@{/}]]";
+    }
+</script>
+<script type="text/javascript">
+    function add() {
+        window.location = "[[@{/FV/new}]]";
+    }
+</script>
+    <script type="text/javascript">
+    function change() {
+        window.location = "[[@{'/FV/new}]]";
+    }
+</script>
+<script type="text/javascript">
+$(document)
+.ready(function () {
+$('#tabelafv').DataTable({
+"language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Polish.json"
+            },
+
+     paging: false,
+        ordering: false,
+        info: false
+         });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="conteiner fluid">
+    <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
+    <form th:action="@{/storage/save}" method="post" th:object="${storage}"
+    style="max-width: 500px; margin: 0 auto;">
+        <input type="hidden" th:field="*{id}">
+        <div class="border border secondary rounded p-3">
+            <div class="form-group row">
+<label class="col-sm-4 col-form-label">Kod</label>
+                <div class="col-sm-8">
+<input type="number" th:field="*{kod}" class="form-control" required minlength="1"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Nazwa</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{nazwa}" class="form-control" required minlength="3"/>
+                </div>
+        </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Ilość w magazynie(kg)</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{iloscMagazyn}" class="form-control"/>
+                </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Cena zakupu</label>
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{cenaZakupu}" class="form-control"/>
+                    </div>
+                </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Cena sprzedaży</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{cenaSprzedazy}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Marża</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{marza}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Data ważności</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{dataWaznosci}" class="form-control"/>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary m-2 bg-dark bg-gradient">Zapisz</button>
+                <button type="button" class="btn btn-primary m-2 bg-dark bg-gradient" onclick="cancelForm()">Anuluj</button>
+            </div>
+            </div>
+    </form>
+</div>
+    <script type="text/javascript">
+        function cancelForm(){
+        window.location = "[[@{/storage}]]";
+        }
+    </script>
+</body>
+</html>

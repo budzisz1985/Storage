@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>sklepmiesny.pl</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body class="bg-secondary">
+<header>
+    <nav class="navbar navbar-dark bg-dark navbar-expand mb-4">
+        <a class="navbar-brand" th:href="@{/}">sklepmiesny.pl</a>
+
+        <div>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Start</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/storage}">Magazyn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/orders}">Zamówienia</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/FV}">Faktury</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="conteiner fluid text-center">
+    <ul class="h1 list-group ">
+        <a th:href="@{/storage}" class="list-group-item list-group-item list-group-item-action bg-dark m-2 text-white">Magazyn</a>
+        <a th:href="@{/orders}" class="list-group-item list-group-item list-group-item-action bg-dark m-2 text-white">Zamówienia</a>
+        <a th:href="@{/FV}" class="list-group-item list-group-item list-group-item-action bg-dark m-2 text-white">Faktury</a>
+    </ul>
+</div>
+</body>
+</html>
